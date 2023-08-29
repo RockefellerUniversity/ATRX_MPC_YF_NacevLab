@@ -14,10 +14,10 @@ library(clusterProfiler)
 library(enrichplot)
 
 # get up and down genes from RNAseq analysis
-up_geneID_p05FC2 <- read.table("/Users/douglasbarrows/Desktop/BRC/collaborations/Allis/Yan/20220124_10T_AtrxKO_B10_G7_RNAseq/doug_analysis/DE_gene_lists/G7_B10_overlap_p05_FC2_UPgenes_ID.txt") %>%
+up_geneID_p05FC2 <- read.table("DE_gene_lists/G7_B10_overlap_p05_FC2_UPgenes_ID.txt") %>%
   pull(V1) 
 
-down_geneID_p05FC2 <- read.table("/Users/douglasbarrows/Desktop/BRC/collaborations/Allis/Yan/20220124_10T_AtrxKO_B10_G7_RNAseq/doug_analysis/DE_gene_lists/G7_B10_overlap_p05_FC2_DOWNgenes_ID.txt") %>%
+down_geneID_p05FC2 <- read.table("DE_gene_lists/G7_B10_overlap_p05_FC2_DOWNgenes_ID.txt") %>%
   pull(V1) 
 
 # make bed files for TSS of up and down RNAseq genes
@@ -144,9 +144,9 @@ dev.off()
 mean_pp_k4_up_geneID <- mcols(mean_pp_k4_up)$name[mcols(mean_pp_k4_up)$over_sig == "sig_up"]
 
 # get universe from differential analysis
-universe_G7 <- read.table("/Users/douglasbarrows/Desktop/BRC/collaborations/Allis/Yan/20220124_10T_AtrxKO_B10_G7_RNAseq/salmon/Group_Atrx_sg5_G7_minus_Atrx_sg6_B10GOIonlyDEG.xls") %>%
+universe_G7 <- read.table("path_to_DEG_output/Group_Atrx_sg5_G7_minus_Atrx_sg6_B10GOIonlyDEG.xls") %>%
   pull(V1) 
-universe_B10 <- read.table("/Users/douglasbarrows/Desktop/BRC/collaborations/Allis/Yan/20220124_10T_AtrxKO_B10_G7_RNAseq/salmon/Group_Atrx_sg6_B10_minus_WTGOIonlyDEG.xls") %>%
+universe_B10 <- read.table("path_to_DEG_output/Group_Atrx_sg6_B10_minus_WTGOIonlyDEG.xls") %>%
   pull(V1) 
 
 universe_both <- c(universe_G7, universe_B10) %>% unique
