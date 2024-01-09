@@ -9,13 +9,9 @@ library(rtracklayer)
 library(DESeq2)
 
 # load in peaks
-sig_peaks_p05 <- import("path_to_H3K9me3_peaks/k9_tiling90_k9_seacrP05_reducedSet_DOWNonly.bed")
-sig_peaks_p01 <- import("path_to_H3K9me3_peaks/k9_tiling90_k9_seacrP01_reducedSet_DOWNonly.bed")
-sig_peaks_p001 <- import("path_to_H3K9me3_peaks/k9_tiling90_k9_seacrP001_reducedSet_DOWNonly.bed")
+sig_peaks_p05 <- import("path_to_H3K9me3_peaks/k9_tiling90_k9_seacrP05_reduced_overIgG_relaxed_DOWNonly.bed")
 
-k9_peak_list <- list(`p < 0.05` = sig_peaks_p05, 
-                     `p < 0.01` = sig_peaks_p01, 
-                     `p < 0.001` = sig_peaks_p001)
+k9_peak_list <- list(`p < 0.05` = sig_peaks_p05)
 
 
 # load in genes tht go up in rna seq

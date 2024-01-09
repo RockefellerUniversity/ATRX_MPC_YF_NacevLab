@@ -210,7 +210,7 @@ mean_pp_k27 <- mean_pp_all[["k27ac"]]
 mean_pp_k27_sum <- profileplyr::summarize(mean_pp_k27, fun = rowMeans, output = "matrix")
 mean_pp_k27 <- mean_pp_k27[!rowSums(mean_pp_k27_sum) == 0,,]
 
-mean_pp_k27_up <- mean_pp_k27[mcols(mean_pp_k27)$sgGroup == "k27ac_HC_Peaks_overUP_DEgenes_noProm.bed"]
+mean_pp_k27_up <- mean_pp_k27[mcols(mean_pp_k27)$sgGroup == "k27ac_HC_Peaks_stringent_overUP_DEgenes_noProm.bed"]
 mcols(mean_pp_k27_up)$over_sig <- ifelse(rowRanges(mean_pp_k27_up)$names %in% k27ac_hc_sigUP$range_id, "sig_up", "no_change")
 mcols(mean_pp_k27_up)$over_sig <- ordered(mcols(mean_pp_k27_up)$over_sig, levels = c("sig_up", "no_change"))
 mean_pp_k27_up <- groupBy(mean_pp_k27_up, group = "over_sig")

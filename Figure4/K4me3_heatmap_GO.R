@@ -119,7 +119,7 @@ mean_pp_k4 <- mean_pp_k4[!rowSums(mean_pp_k4_sum) == 0,,]
 
 mean_pp_k4_up <- mean_pp_k4[mcols(mean_pp_k4)$sgGroup == "mm10_TSS_up.bed"]
 
-up_peaks_k4 <- rtracklayer::import("path_to_DE_peaks/k4me3_stringent0.01_wRep4_B10andG7_overlap_sigPeaks_up.bed")
+up_peaks_k4 <- rtracklayer::import("path_to_DE_peaks/k4me3_stringent_overIgG_B10andG7_overlap_sigPeaks_up.bed")
 mcols(mean_pp_k4_up)$over_sig <- ifelse(mean_pp_k4_up %over% up_peaks_k4, "sig_up", "no_change")
 mcols(mean_pp_k4_up)$over_sig <- ordered(mcols(mean_pp_k4_up)$over_sig, levels = c("sig_up", "no_change"))
 mean_pp_k4_up <- groupBy(mean_pp_k4_up, group = "over_sig")

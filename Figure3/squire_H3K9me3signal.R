@@ -53,7 +53,7 @@ Herper::install_CondaTools(tools = c("pyfaidx"),
 Herper::local_CondaEnv(new = "squire_yan", 
                        pathToMiniConda="path_to_miniconda")
 
-#system("git clone https://github.com/wyang17/SQuIRE; cd SQuIRE; pip install -e .")
+system("git clone https://github.com/wyang17/SQuIRE; cd SQuIRE; pip install -e .")
 
 ################################################################################
 ################################################################################
