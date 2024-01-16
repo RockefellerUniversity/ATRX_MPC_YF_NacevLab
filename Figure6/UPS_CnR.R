@@ -63,7 +63,7 @@ allgenes_great_gobp <- lapply(great_all_geneid,
 
 names(allgenes_great_gobp) <- gsub(" < ", "", names(allgenes_great_gobp))
 
-# this table is Supplementary Table 33 and is used for Figure 6E
+# this table is Supplementary Table 33 and is used for Figure 6C
 lapply(seq_along(allgenes_great_gobp), function(x){
   if(!is.null(allgenes_great_gobp[[x]])){
     rio::export(allgenes_great_gobp[[x]],
@@ -151,7 +151,7 @@ allgenes_great_gobp <- lapply(great_all_geneid,
 
 names(allgenes_great_gobp) <- gsub(" < ", "", names(allgenes_great_gobp))
 
-# # this table is Supplementary Table 32 and is used for Supplementary Figure 12B
+# # this table is Supplementary Table 32 and is used for Supplementary Figure 11C
 lapply(seq_along(allgenes_great_gobp), function(x) rio::export(allgenes_great_gobp[[x]], 
                                                                paste0("GO_great_GOBP/GOBP_great_allgenes_result_", 
                                                                       names(allgenes_great_gobp)[x],
@@ -368,7 +368,7 @@ rna_rep_merge_bothP05 <- rna_rep_merge %>%
   dplyr::select(-contains("lfcSE"), -baseMean_clone6) %>%
   dplyr::rename(baseMean = baseMean_clone4)
 
-# this table is Supplementary Table 36 and is used to make Figure 6C
+# this table is Supplementary Table 36 and is used to make Figure 6F
 rna_rep_merge_bothP05_UPonly <- rna_rep_merge_bothP05 %>%
   dplyr::filter(log2FoldChange_clone4 > 0 & log2FoldChange_clone6 > 0)
 rio::export(rna_rep_merge_bothP05_UPonly, "UPS_bothClones_vsWT_squire_P05_UPonly_byLocus.xlsx")
@@ -444,7 +444,7 @@ writeXStringSet(atac_up_p05_seq, file = "atac_up_p05_wholePeak_seq.fa")
 # run meme
 # motif database from here: https://meme-suite.org/meme/doc/download.html on 20230106
 
-# outputs from this were used for Figure 6G
+# outputs from this were used for Figure 6E
 system2(command = "meme-chip",
         args = c("-oc atac_up_p05_middle200bp",
                  "-time 240",
