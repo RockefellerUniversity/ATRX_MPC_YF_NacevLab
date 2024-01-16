@@ -553,3 +553,36 @@ pdf("sum_cts/TE_subfamily_heatmapCts_thenRlog_10T_batch_TEtransc.pdf", height = 
 Heatmap(rlog_sum_cts_mat_batchRm_scale,
         cluster_columns = FALSE)
 dev.off()
+
+################################################################################
+################################################################################
+# MEME motif analysis for ATRX Peaks 
+################################################################################
+################################################################################
+
+
+# get seq for ATRX peaks
+atrx_p05 <- rtracklayer::import("ATRX_stringent_IgGnorm_bothClones_DESeqModel_sigPeaks_down.bed")
+names(atrx_p05) <- seq(length(atrx_p05))
+atrx_p05_seq <- getSeq(BSgenome.Mmusculus.UCSC.mm10, atrx_p05)
+writeXStringSet(atrx_p05_seq, file = "atrx_p05_wholePeak_seq.fa")
+
+## run meme
+# motif database from here: https://meme-suite.org/meme/doc/download.html on 20230106
+
+# outputs from this command were used in Supplementary Figure 10H
+system2(command = "meme-chip",
+        args = c("-oc atrx_p05_middle200bp",
+                 "-time 240",
+                 "-ccut 200", # this means it will only look at middle 200 bp (like homer)
+                 "-dna -order 2 -minw 6 -maxw 15",
+                 "-db motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme",
+                 "-db motif_databases/MOUSE/uniprobe_mouse.meme",
+                 "-db motif_databases/EUKARYOTE/jolma2013.meme",
+                 "-meme-mod zoops -meme-nmotifs 3 -meme-searchsize 100000",
+                 "-streme-pvt 0.05 -streme-totallength 4000000",
+                 "-centrimo-score 5.0 -centrimo-ethresh 10.0",
+                 "atrx_p05_wholePeak_seq.fa"),
+        stdout = paste0("meme_logs/motif_ATRX_P05_out_",format(Sys.time(), "%m.%d.%Y-%H.%M"),".txt"), 
+        stderr = paste0("meme_logs/motif_ATRX_P05_err_",format(Sys.time(), "%m.%d.%Y-%H.%M"),".txt")
+)
