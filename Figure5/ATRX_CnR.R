@@ -132,7 +132,7 @@ peak_list <- list(
   ATAC_WT_HC = ATAC_WT_HC
 )
 
-# these venn diagrams are Figure 5C-E
+# these venn diagrams are Figure 5 and Supplementary Figure 10D,E
 # the tables in this loop are Supplementary Tables 27, 28, 29, and 30
 for(i in seq_along(peak_list)){
   
@@ -548,7 +548,7 @@ rlog_sum_cts_mat <- assay(rlog_sum_cts)
 rlog_sum_cts_mat_batchRm <- limma::removeBatchEffect(rlog_sum_cts_mat, colData_atrx_cts$replicate)
 rlog_sum_cts_mat_batchRm_scale <- t(scale(t(rlog_sum_cts_mat_batchRm)))
 
-# this is Figure 5H
+# this is Figure 5F
 pdf("sum_cts/TE_subfamily_heatmapCts_thenRlog_10T_batch_TEtransc.pdf", height = 10)
 Heatmap(rlog_sum_cts_mat_batchRm_scale,
         cluster_columns = FALSE)
